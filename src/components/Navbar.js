@@ -3,11 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
+
   const handleLogout = () => {
-    // console.log("hi");
+    // Remove the authToken from localStorage
     localStorage.removeItem("authToken");
+    // Redirect to the login page
     navigate("/Login");
   };
+
+  const handlbutton = (e)=> {
+    e.preventDefault();
+
+    console.log('clicked')
+  }
 
   return (
     <div>
@@ -55,15 +63,10 @@ export default function Navbar() {
             </ul>
             {localStorage.getItem("authToken") ? (
               <div className="d-flex">
-                
-                <Link className=" btn bg-white text-success mx-1" to="/Login">
-                  
+                <Link className="btn bg-white text-success mx-1" to="/Login">
                   Login
                 </Link>
-                <Link
-                  className="btn bg-white text-success mx-1"
-                  to="/creatuser"
-                >
+                <Link className="btn bg-white text-success mx-1" to="/creatuser">
                   Signup
                 </Link>
               </div>
@@ -71,12 +74,12 @@ export default function Navbar() {
               <div>
                 <div className="btn bg-white text-success mx-2">My Cart</div>
                 <button
+                  type="button"
                   onClick={handleLogout}
                   className="btn bg-white text-success"
                 >
                   Logout
                 </button>
-                {/* <div className='btn bg-white text-danger mx-2 ' onClick={handleLogout}  >Logout</div> */}
               </div>
             )}
           </div>
